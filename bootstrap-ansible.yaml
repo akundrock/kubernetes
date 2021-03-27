@@ -1,0 +1,40 @@
+- hosts: all 
+  become: yes
+  vars_prompt:
+          - name: hostname 
+            prompt: 'What hostname to use?'
+            private: no
+  tasks:
+          - name: Update distro
+            apt:
+                    upgrade: yes
+                    update_cache: yes
+          - name: Install sshpass
+            apt:
+                    name: sshpass
+          - name: Turn on persistant hostname
+            lineinfile:
+                    path: /etc/cloud/cloud.cfg
+                    regexp: '^preserve_hostname'
+                    line: 'preserve_hostname: true'
+          - name: Set Hostname
+            shell: hostnamectl set-hostname {{ hostname }}
+
+
+          - name: Run swapoff
+            shell: |
+              swapoff -a
+          - name: Remove swap from fstab
+            replace:
+                    path: /etc/fstab
+                    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+                    replace: '# \1'
+          - name: Install Docker
+            apt:
+                    update_cache: yes
+                    name: docker.io
+          - name: Enable Docker
+            service:
+                    name: docker
+                    enabled: yes
+          
