@@ -12,3 +12,8 @@
 - name: install package
   apt:
     name: docker-ce
+
+- name: Enable Docker
+  service:
+    name: docker
+    enabled: yes

@@ -1,0 +1,9 @@
+---
+- name: Run swapoff
+  shell: |
+    swapoff -a
+- name: Remove swap from fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
