@@ -3,6 +3,10 @@
   copy:
     src: kubeadm-config.yaml
     dest: /home/ubuntu/kubeadm-config.yaml
+- name: Copy calico config
+  copy:
+    src: calico.yaml
+    dest: /home/ubuntu/calico.yaml
 - name: Run kubeadm init
   shell: |
     kubeadm init --config=kubeadm-config.yaml --upload-certs
@@ -30,3 +34,6 @@
     src: '/etc/kubernetes/admin.conf'
     dest: '/home/ubuntu/.kube/config'
     flat: true
+- name: Run calico init
+  shell: |
+    kubectl apply -f calico.yaml

@@ -26,8 +26,8 @@
 
 - name: Run Swapoff script
   include_tasks: swapoff.yaml
-  run_once: false
+  run_once: true
 
 - name: Run Cluster Bootstrap script
   include_tasks: init.yaml
-  run_once: false
+  run_once: true
