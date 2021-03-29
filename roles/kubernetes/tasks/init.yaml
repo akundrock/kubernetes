@@ -34,6 +34,8 @@
     src: '/etc/kubernetes/admin.conf'
     dest: '/home/ubuntu/.kube/config'
     flat: true
+
 - name: Run calico init
   shell: |
     kubectl apply -f calico.yaml
+  become: false
