@@ -1,0 +1,21 @@
+---
+- name: Add k8s apt key
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state: present
+- name: Add K8s Repo
+  apt_repository:
+    repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+
+- name: Install k8s packages
+  apt:
+    name: "{{ kubernetes_packages |
+      map('regex_replace', '$', '=' + kubernetes_version + '-00') |
+      list
+    }}"
+
+- name: Hold k8s package numbers
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items: kubernetes_packages
