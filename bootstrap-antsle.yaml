@@ -1,4 +1,4 @@
-- hosts: k8s_nodes
+- hosts: antsle
   become: yes
   vars_prompt:
     - name: hostname
