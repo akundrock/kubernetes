@@ -1,6 +1,6 @@
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
 kubernetesVersion: 1.19.1  #<-- Use the word stable for newest version
-controlPlaneEndpoint: "k8s-master-2:6443"  #<-- Use the node alias not the IP
+controlPlaneEndpoint: "k8s-master:6443"  #<-- Use the node alias not the IP
 networking: 
   podSubnet: 192.168.0.160/27 #<-- Match the IP range from the Calico config file
