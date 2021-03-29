@@ -3,9 +3,9 @@
   copy:
     src: kubeadm-config.yaml
     dest: /home/ubuntu/kubeadm-config.yaml
-# - name: Run kubeadm init
-#   shell: |
-#     kubeadm init --config=kubeadm-config.yaml --upload-certs
+- name: Run kubeadm init
+  shell: |
+    kubeadm init --config=kubeadm-config.yaml --upload-certs
   become: true
 - name: 'initialize | create kubectl config directory'
   file:
