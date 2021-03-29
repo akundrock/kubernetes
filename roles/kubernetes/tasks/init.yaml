@@ -3,12 +3,12 @@
   copy:
     src: kubeadm-config.yaml
     dest: /home/ubuntu/kubeadm-config.yaml
-- name: Run kubeadm init
-  shell: |
-    kubeadm init --config=kubeadm-config.yaml --upload-certs
+# - name: Run kubeadm init
+#   shell: |
+#     kubeadm init --config=kubeadm-config.yaml --upload-certs
   become: true
 - name: 'initialize | create kubectl config directory'
-  ansible.builtin.file:
+  file:
     path: '/ubuntu/.kube/'
     state: 'directory'
     owner: 'ubuntu'
@@ -16,9 +16,9 @@
     mode: 0750
 
 - name: 'initialize | copy admin.conf to kubectl config directory'
-  ansible.builtin.copy:
+  copy:
     src: '/etc/kubernetes/admin.conf'
-    dest: '/ubuntu/.kube/config'
+    dest: '/home/ubuntu/.kube/config'
     owner: 'ubuntu'
     group: 'ubuntu'
     mode: 0750
@@ -26,7 +26,7 @@
     backup: true
 
 - name: 'initialize | copy Kubernetes config locally'
-  ansible.builtin.fetch:
+  fetch:
     src: '/etc/kubernetes/admin.conf'
-    dest: '/ubuntu/.kube/config'
+    dest: '/home/ubuntu/.kube/config'
     flat: true
