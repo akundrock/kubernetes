@@ -1,5 +1,6 @@
 setup-blank-vm:
-	ansible-playbook -kK bootstrap-antsle.yaml -u ubuntu
+	ssh-copy-id -i /home/ubuntu/.ssh/id_rsa.pub ubuntu@10.1.1.161
+	ansible-playbook -bK bootstrap-antsle.yaml -u ubuntu
 
 setup-k8s-nodes:
-	ansible-playbook -kK playbooks/kubernetes.yaml -u ubuntu
+	ansible-playbook -bK playbooks/kubernetes.yaml -u ubuntu
