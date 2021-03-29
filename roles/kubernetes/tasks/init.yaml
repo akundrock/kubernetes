@@ -9,7 +9,7 @@
   become: true
 - name: 'initialize | create kubectl config directory'
   file:
-    path: '/ubuntu/.kube/'
+    path: '/home/ubuntu/.kube/'
     state: 'directory'
     owner: 'ubuntu'
     group: 'ubuntu'
