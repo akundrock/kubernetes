@@ -4,6 +4,6 @@
    - roles/apt_https
    - roles/docker
    - roles/kubernetes
-   - roles/kubernetes-master
+   - roles/kubernetes_master
   vars:
     kubernetes_version: 1.19.1
