@@ -1,7 +1,13 @@
 antsle:
   hosts:
-   10.1.1.160
-   10.1.1.170
+    k8s-master-1:
+      ansible_host: 10.1.1.160
+      hostname: k8s-master-1
+      home_ip: 160
+    k8s-worker-1:
+      ansible_host: 10.1.1.170
+      hostname: k8s-worker-1
+      home_ip: 170
 k8s_masters:
   hosts:
    192.168.0.160

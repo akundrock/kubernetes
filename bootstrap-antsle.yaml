@@ -1,12 +1,12 @@
 - hosts: antsle
   become: yes
-  vars_prompt:
-    - name: hostname
-      prompt: "What hostname to use?"
-      private: no
-    - name: home_ip
-      prompt: "Give the home IP number (160-191)"
-      private: no
+  # vars_prompt:
+  #   - name: hostname
+  #     prompt: "What hostname to use?"
+  #     private: no
+  #   - name: home_ip
+  #     prompt: "Give the home IP number (160-191)"
+  #     private: no
   tasks:
     - name: Update distro
       apt:
