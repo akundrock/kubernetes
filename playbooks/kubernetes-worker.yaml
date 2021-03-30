@@ -1,0 +1,8 @@
+---
+- hosts: k8s_workers
+  roles:
+   - roles/apt_https
+   - roles/docker
+   - roles/kubernetes
+   - roles/kubernetes_worker
+
